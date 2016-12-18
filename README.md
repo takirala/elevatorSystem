@@ -50,7 +50,6 @@ Below classes are required :
 	
 #### To compile the code:
 
-	Lavenger@TAKIRALA-02 MINGW64 ~/git/elevatorSystem (master)    
 	$ javac -cp . SimpleElevatorSystem.java Test.java             
 
 #### Execute the test cases:
@@ -59,7 +58,6 @@ Below classes are required :
 
 #### Example execution of main program : 
 	                                                              
-	Lavenger@TAKIRALA-02 MINGW64 ~/git/elevatorSystem (master)    
 	$ java SimpleElevatorSystem                                   
 	========================================                      
 	Available commands : [pick] or [update]                       
