@@ -19,11 +19,11 @@ class Test {
 
         System.out.println("pickUp at " + 5 + " UP ");
         sys.pickUp(5, 1);
-        sys.printStatus();
+        sys.status();
         sys.step();
-        sys.printStatus();
+        sys.status();
         sys.step();
-        sys.printStatus();
+        sys.status();
     }
 
     private static void testUpdate(ElevatorControlSystemImpl sys) {
@@ -31,55 +31,55 @@ class Test {
         System.out.println("Update to elevator " + 0 + " to reach : " + 4);
         sys.update(0, 4);
         sys.step();
-        sys.printStatus();
+        sys.status();
         System.out.println("Update to elevator " + 1 + " to reach : " + 6);
         sys.update(1, 6);
         sys.step();
-        sys.printStatus();
+        sys.status();
         System.out.println("Update to elevator " + 3 + " to reach : " + 7);
         sys.update(3, 2);
         sys.step();
-        sys.printStatus();
+        sys.status();
         sys.step();
-        sys.printStatus();
+        sys.status();
         sys.step();
-        sys.printStatus();
+        sys.status();
         sys.step();
-        sys.printStatus();
+        sys.status();
     }
 
     private static void testPickUp(ElevatorControlSystemImpl sys) {
         System.out.println("################## PICK UP ##################");
-        System.out.println("pickUp at " + 7 + " UP ");
+        System.out.println("pickUp at " + 7 + " DOWN ");
         sys.pickUp(7, 1);
         sys.step();
-        sys.printStatus();
+        sys.status();
         sys.step();
-        sys.printStatus();
+        sys.status();
         sys.step();
-        sys.printStatus();
+        sys.status();
         // In this below case, the first one should keep going up although it
         // is near. Another halted one should start to pick 2 up.
         System.out.println("pickUp at " + 2 + " UP ");
         sys.pickUp(2, 1);
         sys.step();
-        sys.printStatus();
+        sys.status();
         sys.step();
-        sys.printStatus();
+        sys.status();
         sys.step();
-        sys.printStatus();
+        sys.status();
     }
 
     private static void testIdle(ElevatorControlSystemImpl sys) {
         System.out.println("################## IDLE ##################");
         sys.step();
-        sys.printStatus();
+        sys.status();
         sys.step();
-        sys.printStatus();
+        sys.status();
         sys.step();
-        sys.printStatus();
+        sys.status();
         sys.step();
-        sys.printStatus();
+        sys.status();
         sys.step();
     }
 

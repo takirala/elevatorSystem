@@ -9,7 +9,7 @@ interface ElevatorControlSystem {
     public static final int DOWN = -1;
     public static final int MAX_CAPACITY = 10;
 
-    public void printStatus();
+    public void status();
 
     public void update(int elevatorId, int goalFloor);
 
@@ -17,24 +17,6 @@ interface ElevatorControlSystem {
 
     public void step();
 
-    class Status {
-        int elevatorId;
-        int currentFloor;
-        TreeSet<Integer> goalFloors;
-
-        public Status(int elevatorId, int currentFloor, TreeSet<Integer> goalFloors) {
-            this.elevatorId = elevatorId;
-            this.currentFloor = currentFloor;
-            this.goalFloors = goalFloors;
-        }
-
-        @Override
-        public String toString() {
-            return "Elevator : " + elevatorId
-                    + " \tcurrentFloor : " + currentFloor
-                    + " \ngoalFloors : \n" + goalFloors.toString();
-        }
-    }
 }
 
 class Elevator {
@@ -70,9 +52,28 @@ class ElevatorControlSystemImpl implements ElevatorControlSystem {
         this.MAX_FLOORS = MAX_FLOORS;
     }
 
-    public void printStatus() {
+    class Status {
+        int elevatorId;
+        int currentFloor;
+        TreeSet<Integer> goalFloors;
+
+        public Status(int elevatorId, int currentFloor, TreeSet<Integer> goalFloors) {
+            this.elevatorId = elevatorId;
+            this.currentFloor = currentFloor;
+            this.goalFloors = goalFloors;
+        }
+
+        @Override
+        public String toString() {
+            return "Elevator : " + elevatorId
+                    + " \tcurrentFloor : " + currentFloor
+                    + " \ngoalFloors : \n" + goalFloors.toString();
+        }
+    }
+
+    public void status() {
         System.out.println();
-        Status[] st = status();
+        Status[] st = getStatusObjects();
         int[][] config = new int[MAX_FLOORS][elevators.length];
         for (Status s : st) {
             config[s.currentFloor][s.elevatorId] = 1;
@@ -85,7 +86,7 @@ class ElevatorControlSystemImpl implements ElevatorControlSystem {
         }
     }
 
-    Status[] status() {
+    private Status[] getStatusObjects() {
         Status[] status = new Status[elevators.length];
         for (int i = 0; i < elevators.length; i++) {
             Elevator e = elevators[i];
@@ -98,16 +99,6 @@ class ElevatorControlSystemImpl implements ElevatorControlSystem {
         Elevator e = elevators[elevatorId];
         e.goalFloors.add(goalFloor);
     }
-
-    /*
-    To pick up a passenger, the algorithm can consider three options.
-        1) An elevator is right now at the pickUpFloor. Just open its doors.
-        2) n elevators are halted at n floors. Choose one amongst them to travel
-            toward the pickUpFloor. Pick the nearest possible elevator.
-        3) m elevators are in transit. Add the current destination to all transit
-            elevators. We add this to all the elevators because we do not know which
-            one will arrive first.
-    */
 
     public void pickUp(int pickUpFloor, int direction) {
 
@@ -143,7 +134,17 @@ class ElevatorControlSystemImpl implements ElevatorControlSystem {
         return false;
     }
 
-    // Move to next possible configuration.
+    /*
+    Move to next possible configuration.
+
+    To pick up a passenger, the algorithm can consider three options.
+        1) An elevator is right now at the pickUpFloor. Just open its doors.
+        2) n elevators are halted at n floors. Choose one amongst them to travel
+            toward the pickUpFloor. Pick the nearest possible elevator.
+        3) m elevators are in transit. Add the current destination to all transit
+            elevators. We add this to all the elevators because we do not know which
+            one will arrive first.
+    */
     public void step() {
 
         for (Iterator iterator = upRequests.iterator(); iterator.hasNext(); ) {
@@ -186,6 +187,7 @@ class ElevatorControlSystemImpl implements ElevatorControlSystem {
                     e.direction = DOWN;
                     e.currentFloor--;
                 } else {
+                    //Find the nearest possible one.
                     int upDelta = Integer.MAX_VALUE;
                     int downDelta = Integer.MAX_VALUE;
 
@@ -283,7 +285,7 @@ public class SimpleElevatorSystem {
         ElevatorControlSystemImpl sys = new ElevatorControlSystemImpl(elevators,
                 maxFloors);
         sc.nextLine();
-        sys.printStatus();
+        sys.status();
 
         while (true) {
             System.out.println("Input command [Enter to step]: ");
@@ -304,8 +306,7 @@ public class SimpleElevatorSystem {
                 default:
                     sys.step();
             }
-            sys.printStatus();
+            sys.status();
         }
     }
-
 }
