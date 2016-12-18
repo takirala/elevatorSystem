@@ -270,7 +270,7 @@ class ElevatorControlSystemImpl implements ElevatorControlSystem {
 
 public class SimpleElevatorSystem {
 
-    public static void main1(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
         System.out.println("========================================");
         System.out.println("Available commands : [pick] or [update]");
         System.out.println("pick needs a floor number and direction");
