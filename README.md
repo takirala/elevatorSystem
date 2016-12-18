@@ -18,7 +18,7 @@ Below classes are required :
 
 * The system asks how many elevators and how many floors the system covers.
 * Initializes the Elevator Control System.
-* Each elevator will be at floor 0 initially. (Due to time constraint, i have used 0 based index. Hence, range will be 0 to MAX_FLOORS-1)
+* Each elevator will be at floor 0 initially. (i have used 0 based index. Hence, range will be 0 to MAX_FLOORS-1)
 * It can be assumed that whenever an elevator halts at a certain floor, the doors will be kept open.
 
 ## Functionalities provided
@@ -42,7 +42,7 @@ Below classes are required :
 		* This needs two arguments : floorNumber and direction.
 	* update
 		* This needs tow arguments as well : elevatorId and destination floor.
-* Due to time constraints, the code may be a bit redundant, but I have optimized for complexity & functionality.
+* Due to time constraints of 4 hour period, the code may be a bit redundant, but I have optimized for complexity & functionality.
 * Also, I am not checking for basic input validation and always assuming that the inputs are valid.
 	* E.g: If you enter pickup floor as 20 in a 15 floor system, system will crash. This behavior can be changed with very minimal code change.
 
