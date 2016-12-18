@@ -48,14 +48,16 @@ Below classes are required :
 
 ## How to Run the code?
 	
-	To compile the code:
-
-	javac -cp . SimpleElevatorSystem.java
-
-	Example of execution of main program : 
+#### To compile the code:
 
 	Lavenger@TAKIRALA-02 MINGW64 ~/git/elevatorSystem (master)    
 	$ javac -cp . SimpleElevatorSystem.java Test.java             
+
+#### Execute the test cases:
+
+	$ java Test             
+
+#### Example execution of main program : 
 	                                                              
 	Lavenger@TAKIRALA-02 MINGW64 ~/git/elevatorSystem (master)    
 	$ java SimpleElevatorSystem                                   
