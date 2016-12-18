@@ -32,7 +32,7 @@ Below classes are required :
 * I have used a integer array to represent the configuration of elevators and floors in a bottom up fashion.
 	* 0 -> Default value.
 	* 1 -> Elevator is here.
-	* 2 -> This is in elevator goal floors list
+	* 9 -> This is in elevator goal floors list
 * I have used zero based index.
 * The program initially requires two values :
 	* Number of elevators and
@@ -42,6 +42,9 @@ Below classes are required :
 		* This needs two arguments : floorNumber and direction.
 	* update
 		* This needs tow arguments as well : elevatorId and destination floor.
+* Due to time constraints, the code may be a bit redundant, but I have optimized for complexity & functionality.
+* Also, I am not checking for basic input validation and always assuming that the inputs are valid.
+	* E.g: If you enter pickup floor as 20 in a 15 floor system, system will crash. This behavior can be changed with very minimal code change.
 
 ## How to Run the code?
 	
