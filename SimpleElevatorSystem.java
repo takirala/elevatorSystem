@@ -1,7 +1,8 @@
+
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.TreeSet;
-import java.util.Iterator;
 
 interface ElevatorControlSystem {
     public static final int UP = 1;
@@ -127,9 +128,9 @@ class ElevatorControlSystemImpl implements ElevatorControlSystem {
         Integer bestId = null;
         int minDelta = Integer.MAX_VALUE;
 
-        for(Elevator e : elevators) {
-            if(e.goalFloors.size() > 0) continue;
-            if(minDelta < Math.abs(e.currentFloor - request)) {
+        for (Elevator e : elevators) {
+            if (e.goalFloors.size() > 0) continue;
+            if (Math.abs(e.currentFloor - request) < minDelta) {
                 minDelta = Math.abs(e.currentFloor - request);
                 bestId = e.id;
             }
@@ -144,14 +145,14 @@ class ElevatorControlSystemImpl implements ElevatorControlSystem {
 
     // Move to next possible configuration.
     public void step() {
-        
-        for (Iterator iterator = upRequests.iterator(); iterator.hasNext();) {
-            if(assignToBestIdle((Integer) iterator.next()))
+
+        for (Iterator iterator = upRequests.iterator(); iterator.hasNext(); ) {
+            if (assignToBestIdle((Integer) iterator.next()))
                 iterator.remove();
         }
 
-        for (Iterator iterator = downRequests.iterator(); iterator.hasNext();) {
-            if(assignToBestIdle((Integer) iterator.next()))
+        for (Iterator iterator = downRequests.iterator(); iterator.hasNext(); ) {
+            if (assignToBestIdle((Integer) iterator.next()))
                 iterator.remove();
         }
 
@@ -223,7 +224,6 @@ class ElevatorControlSystemImpl implements ElevatorControlSystem {
                 } else {
                     if (e.goalFloors.ceiling(e.currentFloor) == null) {
                         e.direction = DOWN;
-                        e.currentFloor--;
                     } else {
                         //Going up. Increase current floor count.
                         e.currentFloor++;
@@ -251,7 +251,6 @@ class ElevatorControlSystemImpl implements ElevatorControlSystem {
                 } else {
                     if (e.goalFloors.floor(e.currentFloor) == null) {
                         e.direction = UP;
-                        e.currentFloor++;
                     } else {
                         e.currentFloor--;
 
@@ -269,7 +268,7 @@ class ElevatorControlSystemImpl implements ElevatorControlSystem {
 
 public class SimpleElevatorSystem {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main1(String[] args) throws InterruptedException {
         System.out.println("========================================");
         System.out.println("Available commands : [pick] or [update]");
         System.out.println("pick needs a floor number and direction");
