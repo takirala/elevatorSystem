@@ -3,10 +3,9 @@ A simple elevator control system implemented in java.
 
 # Components
 
-Below classes are required :
+Below classes are developed :
 * Elevator 
-* Passenger 
-* Constants class (to hold direction and other classes)
+* Passenger (Can control, number of passengers, their weights etc..)
 * Interface
 * Implementation of Interface
 * Main class to run the code
@@ -131,11 +130,4 @@ Below classes are required :
 	[0, 0, 0, 0]                                                  
 	[0, 0, 0, 1]                                                  
 	[0, 0, 0, 9]                                                  
-	Input command [Enter to step]:                                
-	                                                              
-
-
-
-
-
-
+	Input command [Enter to step]:
